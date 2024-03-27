@@ -26,6 +26,10 @@ const taskSlice = createSlice({
             if(state.data){
                 state.data.push(action.payload);
             }
+        },
+        deleteTask: (state, action) => {
+            if(state.data)
+            state.data = state.data?.filter(item => item.id !== action.payload)
         }
     },
     extraReducers: (builder) => {
