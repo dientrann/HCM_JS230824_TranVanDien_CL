@@ -17,9 +17,8 @@ export default function App() {
       let data = {
         name: (e.target as any).name.value,
         status: 'pending'
-      }
-
-      let result = await apis.taskApi.create(data)
+      }      
+      let result = await apis.taskApi.create(data)    
       
       if (result.status != 200) {
         throw {
@@ -28,8 +27,8 @@ export default function App() {
       }
       message.success("Create Task Success")
       dispatch(taskAction.addTask(result.data.data))
-    } catch (err) {
-      message.error("Create Task Fail")
+    } catch (err: any) {
+      message.error(err.response.data.message ? err.response.data.message : "Create Task Fail")
     }
   }
 
